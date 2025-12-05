@@ -1,0 +1,4 @@
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+# Run every minute as root, append output to /cron/last_code.txt
+* * * * * root python /srv/app/scripts/cron_job.py >> /cron/last_code.txt 2>&1
