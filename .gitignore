@@ -1,0 +1,27 @@
+# -------------------------------------------------
+# PKI + TOTP Microservice - Required .gitignore
+# -------------------------------------------------
+
+# Encrypted seed (must NOT be committed)
+encrypted_seed.txt
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environments
+.env
+venv/
+.env/
+
+# IDE / Editor folders
+.vscode/
+.idea/
+
+# Docker local data volumes (optional if you don't want to push them)
+docker_data/
+docker_cron/
+
+# OS junk
+.DS_Store
+Thumbs.db
