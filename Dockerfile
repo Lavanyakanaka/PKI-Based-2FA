@@ -46,11 +46,16 @@ COPY --from=builder /app/scripts ./scripts
 # Cron file copied into /etc/cron.d to be picked up by cron
 COPY --from=builder /etc/cron.d/totp_cron /etc/cron.d/totp_cron
 
-# Ensure cron file has correct permissions and LF line endings
+# Ensure cron file has correct permissions
 RUN chmod 0644 /etc/cron.d/totp_cron
 
-# Make run script executable
-RUN chmod +x ./scripts/run_cron.sh
+# Strip any CRLF characters that may have been introduced on Windows hosts
+# and make the runtime scripts executable. This prevents errors like:
+# env: 'bash\r': No such file or directory when cron executes scripts.
+# Make runtime scripts executable and strip CRLFs (ensure entrypoint cleaned too)
+RUN sed -i 's/\r$//' /srv/app/scripts/* /etc/cron.d/totp_cron || true \
+    && sed -i 's/\r$//' /srv/app/scripts/entrypoint.sh || true \
+    && chmod +x ./scripts/run_cron.sh ./scripts/run_uvicorn.sh ./scripts/entrypoint.sh
 
 # Expose API port
 EXPOSE 8080
@@ -60,4 +65,12 @@ VOLUME ["/data", "/cron"]
 
 # Start cron (background) and then start uvicorn (foreground)
 # The run script writes last_code to /cron/last_code.txt
-CMD ["bash", "-lc", "service cron start || cron || true; ./scripts/run_uvicorn.sh"]
+CMD ["bash", "-lc", "./scripts/entrypoint.sh"]
+
+# Docker healthcheck: ensure the HTTP API responds before container is considered healthy
+# Use a Python-based healthcheck script (more portable than relying on curl)
+COPY --from=builder /app/scripts/check_health.py ./scripts/check_health.py
+RUN sed -i 's/\r$//' /srv/app/scripts/check_health.py || true \
+    && chmod +x ./scripts/check_health.py
+HEALTHCHECK --interval=5s --timeout=5s --start-period=30s --retries=6 \
+  CMD python ./scripts/check_health.py || exit 1

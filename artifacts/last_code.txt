@@ -1,0 +1,160 @@
+entrypoint: started at 2025-12-14T09:51:32Z
+entrypoint: launching uvicorn at 2025-12-14T09:51:32Z
+INFO:     Started server process [25]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+INFO:     127.0.0.1:48344 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38800 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54864 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54866 - "GET /health HTTP/1.1" 200 OK
+ERROR:    Seed file not found at /data/seed.txt
+INFO:     172.17.0.1:44200 - "GET /generate-2fa HTTP/1.1" 500 Internal Server Error
+ERROR: seed file not found at /data/seed.txt
+Traceback (most recent call last):
+  File "/srv/app/scripts/cron_job.py", line 39, in main
+    b32 = read_seed()
+          ^^^^^^^^^^^
+  File "/srv/app/scripts/cron_job.py", line 24, in read_seed
+    raise FileNotFoundError("seed file not found at {}".format(SEED_PATH))
+FileNotFoundError: seed file not found at /data/seed.txt
+INFO:     127.0.0.1:56074 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56082 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:42200 - "POST /decrypt-seed HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41732 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41748 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60790 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60804 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33992 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:49394 - "GET /generate-2fa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58762 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58768 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46878 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46892 - "GET /health HTTP/1.1" 200 OK
+2025-12-14 09:53:02 - 2FA Code: 369652
+INFO:     127.0.0.1:39208 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39224 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46202 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46216 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43492 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50862 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50864 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38220 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38226 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37364 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37378 - "GET /health HTTP/1.1" 200 OK
+2025-12-14 09:54:01 - 2FA Code: 213670
+INFO:     127.0.0.1:56712 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56726 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51802 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51806 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42658 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43080 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43086 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55756 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55760 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39614 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39618 - "GET /health HTTP/1.1" 200 OK
+2025-12-14 09:55:02 - 2FA Code: 097641
+INFO:     127.0.0.1:48756 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48772 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59816 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59818 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59906 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59916 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57274 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43554 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43558 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57114 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57128 - "GET /health HTTP/1.1" 200 OK
+2025-12-14 09:56:02 - 2FA Code: 979162
+INFO:     127.0.0.1:32836 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32846 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51746 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51750 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50182 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50198 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40388 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58520 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58532 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40398 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40408 - "GET /health HTTP/1.1" 200 OK
+2025-12-14 09:57:01 - 2FA Code: 622214
+INFO:     127.0.0.1:49362 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49366 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56226 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56236 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45206 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45210 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39608 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39618 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53356 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53370 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37672 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37684 - "GET /health HTTP/1.1" 200 OK
+2025-12-14 09:58:02 - 2FA Code: 074241
+INFO:     127.0.0.1:39288 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39290 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35028 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35040 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37586 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37594 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54608 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54618 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60396 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47586 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47600 - "GET /health HTTP/1.1" 200 OK
+2025-12-14 09:59:01 - 2FA Code: 473409
+INFO:     127.0.0.1:51822 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51832 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52816 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52828 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48858 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48864 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59922 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59930 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41722 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41730 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40332 - "GET /health HTTP/1.1" 200 OK
+2025-12-14 10:20:17 - 2FA Code: 438871
+INFO:     127.0.0.1:49574 - "GET /health HTTP/1.1" 200 OK
+2025-12-14 10:20:18 - 2FA Code: 438871
+INFO:     127.0.0.1:40826 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47014 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47020 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46712 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46728 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53352 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53362 - "GET /health HTTP/1.1" 200 OK
+2025-12-14 10:21:01 - 2FA Code: 927134
+INFO:     127.0.0.1:40288 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40304 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46498 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46506 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53860 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53866 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39460 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60982 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60988 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44282 - "GET /health HTTP/1.1" 200 OK
+2025-12-14 10:34:01 - 2FA Code: 366164
+2025-12-14 10:35:01 - 2FA Code: 445041
+2025-12-14 10:36:01 - 2FA Code: 842577
+2025-12-14 10:37:01 - 2FA Code: 394932
+2025-12-14 10:38:01 - 2FA Code: 472001
+2025-12-14 10:39:01 - 2FA Code: 317977
+2025-12-14 10:40:01 - 2FA Code: 196850
+2025-12-14 10:41:01 - 2FA Code: 407263
+2025-12-14 10:42:02 - 2FA Code: 429982
+2025-12-14 10:43:01 - 2FA Code: 072938
+2025-12-14 10:44:01 - 2FA Code: 759049
+2025-12-14 10:45:01 - 2FA Code: 557423
+2025-12-14 10:46:01 - 2FA Code: 905969
+2025-12-14 10:47:01 - 2FA Code: 162487
+2025-12-14 10:48:02 - 2FA Code: 123974
+2025-12-14 10:49:01 - 2FA Code: 118574
+2025-12-14 10:50:01 - 2FA Code: 054202
+2025-12-14 10:51:01 - 2FA Code: 868155
+2025-12-14 10:52:01 - 2FA Code: 843894
+2025-12-14 10:53:01 - 2FA Code: 233576
+2025-12-14 10:54:02 - 2FA Code: 532868

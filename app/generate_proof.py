@@ -35,14 +35,41 @@ def sign_message(message: str, private_key):
     return sig
 
 def encrypt_with_public_key(data: bytes, public_key):
-    ct = public_key.encrypt(
-        data,
-        asympadding.OAEP(
-            mgf=asympadding.MGF1(algorithm=hashes.SHA256()),
-            algorithm=hashes.SHA256(),
-            label=None
+    # Ensure instructor public key is the expected size (4096 bits).
+    EXPECTED_INSTRUCTOR_KEY_BITS = 4096
+    if public_key.key_size != EXPECTED_INSTRUCTOR_KEY_BITS:
+        raise ValueError(
+            f"Instructor public key size is {public_key.key_size} bits; expected {EXPECTED_INSTRUCTOR_KEY_BITS} bits. "
+            "Using a mismatched key will produce ciphertext that the grader cannot decrypt."
         )
-    )
+
+    try:
+        ct = public_key.encrypt(
+            data,
+            asympadding.OAEP(
+                mgf=asympadding.MGF1(algorithm=hashes.SHA256()),
+                algorithm=hashes.SHA256(),
+                label=None
+            )
+        )
+    except ValueError as e:
+        # compute OAEP max message size for SHA-256
+        hash_len = hashes.SHA256().digest_size
+        max_msg = public_key.key_size // 8 - 2 * hash_len - 2
+        raise ValueError(
+            f"Encryption failed: {e}. Data length is {len(data)} bytes but OAEP max payload for a "
+            f"{public_key.key_size}-bit key is approximately {max_msg} bytes. "
+            "Encrypting RSA-PSS signatures (which are key-size bytes) with OAEP is not possible "
+            "for this key size. Consider using a larger recipient RSA key, hybrid encryption, or a "
+            "compact signature scheme."
+        )
+
+    # ciphertext must equal key size in bytes (important for graders)
+    if len(ct) != public_key.key_size // 8:
+        raise ValueError(
+            f"Encrypted ciphertext length {len(ct)} does not equal public key size {public_key.key_size // 8} bytes"
+        )
+
     return ct
 
 def main():
@@ -57,7 +84,13 @@ def main():
         priv = load_private_key(priv_path)
         instr_pub = load_public_key(instr_path)
         signature = sign_message(commit_hash, priv)
-        encrypted = encrypt_with_public_key(signature, instr_pub)
+        try:
+            encrypted = encrypt_with_public_key(signature, instr_pub)
+        except ValueError as e:
+            raise RuntimeError(
+                f"Failed to encrypt signature: {e}. \n" 
+                "Ensure `instructor_public.pem` is the instructor's 4096-bit public key provided by the course."
+            )
         enc_b64 = base64.b64encode(encrypted).decode("ascii")
         # print as two lines for easy parsing
         print("Commit Hash:", commit_hash)

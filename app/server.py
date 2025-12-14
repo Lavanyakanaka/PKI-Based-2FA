@@ -54,6 +54,34 @@ async def post_decrypt_seed(req: DecryptRequest):
     return {"status": "ok"}
 
 
+@app.get("/health")
+async def get_health():
+    """Simple health endpoint used by container healthchecks and loadbalancers.
+
+    Returns 200 when the FastAPI app is accepting requests.
+    """
+    return {"status": "ok"}
+
+
+@app.get("/cron-log")
+async def get_cron_log():
+    """Return the last line of the cron log file (useful for graders to read cron output)."""
+    cron_path = Path(os.environ.get("CRON_LOG_PATH", "/cron/last_code.txt"))
+    if not cron_path.is_file():
+        LOG.error("Cron log file not found at %s", cron_path)
+        raise HTTPException(status_code=404, detail={"error": "Cron log missing"})
+    try:
+        # read last non-empty line
+        with open(cron_path, "r", encoding="utf-8", newline="") as f:
+            lines = [l.rstrip("\n") for l in f if l.strip()]
+        if not lines:
+            return {"last": None}
+        return {"last": lines[-1]}
+    except Exception:
+        LOG.exception("Failed to read cron log")
+        raise HTTPException(status_code=500, detail={"error": "Failed to read cron log"})
+
+
 @app.get("/generate-2fa")
 async def get_generate_2fa():
     # Check seed exists

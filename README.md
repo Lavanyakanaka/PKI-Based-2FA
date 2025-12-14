@@ -188,6 +188,20 @@ bash
  Cron updates docker_cron/last_code.txt
  Project builds & runs cleanly in Docker
 
+## Commit Proof Notes
+
+The commit-proof workflow signs the latest commit with the student's RSA private key and encrypts the signature with the instructor's RSA public key using OAEP. Be aware:
+
+- RSA-PSS signatures are the same length as the signer's RSA modulus (e.g., 512 bytes for a 4096-bit key) and may exceed OAEP's maximum payload for a recipient RSA key of the same size.
+- If `instructor_public.pem` is a different size than the grader's private key (for example, 8192-bit in the repository but the grader uses 4096-bit), decryption will fail with "Ciphertext length must be equal to key size.".
+- To avoid this problem, ensure you use the instructor's provided 4096-bit public key, or switch to a hybrid encryption scheme (encrypt the signature with a symmetric key and encrypt that key with RSA) or a compact signature algorithm.
+
+The `generate_proof.py` script now validates the instructor public key size and gives helpful errors if encryption will not succeed.
+
+## Container Robustness
+
+The container now uses a resilient `scripts/entrypoint.sh` that starts `cron` and runs `uvicorn` inside a monitored loop. If the application process exits unexpectedly, the entrypoint logs the failure to `/cron/last_code.txt` and restarts `uvicorn` after a short delay. This helps avoid rapid crash/restart loops and makes logs available to graders when diagnosing failures.
+
 
 ## 13. Author
 
